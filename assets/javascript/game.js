@@ -1,4 +1,4 @@
-var choices =['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+var choices =[' ', 'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 
 var artists = ['bad bunny', 'daddy yankee', 'don omar', 'enrique iglesias', 'farruko', 'j balvin', 'juan magan', 'luis fonsi', 'maluma', 'nicky jam', 'ozuna', 'piso 21', 'sebastian yatra', 'wisin', 'yandel'];
 
@@ -34,7 +34,7 @@ function reset(){
 
   wrongs = [];
 
-  choices =['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+  choices =[' ', 'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 
   test = false;
 
@@ -57,7 +57,7 @@ function start(){
 
   wrongs = [];
 
-  choices =['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+  choices =[' ','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 
   for(var i=0; i<spaces;i++){
     hits.push(' _ ');
@@ -69,6 +69,35 @@ function start(){
   document.getElementById('lives').innerHTML = tries;
 
   document.getElementById('score').innerHTML = wins;
+}
+
+function compare(userGuess){
+  if(randomArtist.indexOf(userGuess) > -1){
+    for(var i=0; i< spaces; i++){
+       if(letters[i] === userGuess){
+          rights++;
+          hits[i] = userGuess;
+          document.getElementById('name').innerHTML = hits.join(' ');
+        }
+    }
+  }else{
+    wrongs.push(userGuess);
+    tries--;
+    document.getElementById('lives').innerHTML = tries;
+    document.getElementById('guess').innerHTML = wrongs;
+  }
+}
+
+function result(){
+  if(rights === spaces){
+    wins++;
+    document.getElementById('score').innerHTML = wins;
+    alert('You Won!');
+    reset();
+  }else if(tries === 0){
+    alert('You Lost :(');
+    reset();
+  }
 }
 
 start();
@@ -83,33 +112,11 @@ document.onkeyup = function(event){
 
   for(var i=0; i<choices.length; i++){
     if(userGuess === choices[i] && test === true){
-      if(randomArtist.indexOf(userGuess) > -1){
-        for(var i=0; i< spaces; i++){
-          if(letters[i] === userGuess){
-            rights++;
-            hits[i] = userGuess;
-            document.getElementById('name').innerHTML = hits.join(' ');
-          }
-        }
-      }else{
-        wrongs.push(userGuess);
-        tries--;
-        document.getElementById('lives').innerHTML = tries;
-        document.getElementById('guess').innerHTML = wrongs;
-      }
-
-      if(rights === spaces){
-        wins++;
-        document.getElementById('score').innerHTML = wins;
-        alert('You Won!');
-        reset();
-      }else if(tries === 0){
-        alert('You Lost :(');
-        reset();
-      }
+      compare(userGuess);
+      result();
     }
   }
-}
+} 
 
     
    
