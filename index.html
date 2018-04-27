@@ -8,47 +8,39 @@
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="assets/javascript/game.js"> </script>
+    
  
   </head>
 
   <body>
-
-    <h1>Reggaeton Hangman Game!</h1>
-
-    <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src="assets/images/logo.gif" alt="Reaggaeton Hangman Game Logo">
-      <div class="card-body">
-        <p class="card-text">Press any key to get started.</p>
-        <p class="card-text">In this hangman style word guess game you will have to guess a reggaeton artist name, once a correct answer is achieved then the picture of the artist and their best latest song will appear on the screen.</p>
+    <div id="container">
+      <div id="header">
+        <h1 class="title">Reggaeton Hangman Game!</h1>
+        <p class="instructions"> In this hangman style word guess game you will have to guess a reggaeton artist name, once a correct answer is achieved then the picture of the artist and their best latest song will appear on 
+        <br><hr>
+        <div class="stats">
+          <p> Your score is: <span id="score"> 0 </span> ! </p>
+          <p> You have: <span id="lives"> 10 </span> lives left. </p>
+          <p> You have tried: <span id="guess"> ... </span> so far. </p>
+        </div>
+        <img class="logo" src="assets/images/logo.gif" alt="Reaggaeton Hangman Game">
       </div>
-    </div>
 
-    <h2>The reggaetonero's name is: <span id=str><strong>...Nothing.</strong></span></h2>
-  <script type="text/javascript">
-
-    var randomArtist = function(str){
-      return str.length
-    }
-
-    var artists = ["Bad Bunny", "Daddy Yankee", "Don Omar", "Enrique Iglesias", "Farruko", "J Balvin", "Juan Magan", "Luis Fonsi", "Maluma", "Nicky Jam", "Ozuna", "Piso 21", "Sebastian Yatra", "Wisin", "Yandel"]
-
-    var str = "";
-
-    document.onkeyup = function(event){
-      var randomArtist = artists[Math.floor(Math.random()*artists.length)];
-
-      for(var i=0; i < randomArtist.Length; i++) {
-        str[i] = "_";
-      } 
-    }
+    
+    
+    
   
 
+    <h2 class="result">The reggaetonero's name is: <span id="name"><strong> ... </strong></span></h2>
 
 
 
 
 
 
-  </script>
+
+
+    </div>
   </body>
 </html>
