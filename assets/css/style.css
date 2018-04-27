@@ -1,13 +1,16 @@
 #container {
 	width: 960px;
+	background: white;
 }
 
 .title{
 	float: middle;
+	text-align: center;
 }
 
 .instructions{
 	float: middle;
+	text-align: center;
 }
 
 .logo {

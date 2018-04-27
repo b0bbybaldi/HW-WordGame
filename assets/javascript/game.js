@@ -71,17 +71,17 @@ function start(){
   document.getElementById('score').innerHTML = wins;
 }
 
-function compare(userGuess){
-  if(randomArtist.indexOf(userGuess) > -1){
+function compare(userPress){
+  if(randomArtist.indexOf(userPress) > -1){
     for(var i=0; i< spaces; i++){
-       if(letters[i] === userGuess){
+       if(letters[i] === userPress){
           rights++;
-          hits[i] = userGuess;
+          hits[i] = userPress;
           document.getElementById('name').innerHTML = hits.join(' ');
         }
     }
   }else{
-    wrongs.push(userGuess);
+    wrongs.push(userPress);
     tries--;
     document.getElementById('lives').innerHTML = tries;
     document.getElementById('guess').innerHTML = wrongs;
@@ -108,7 +108,7 @@ document.onkeyup = function(event){
 
   var userGuess = event.key;
 
-  console.log(userGuess);
+  // console.log(userGuess);
 
   for(var i=0; i<choices.length; i++){
     if(userGuess === choices[i] && test === true){
