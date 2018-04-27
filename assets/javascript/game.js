@@ -41,10 +41,10 @@ function reset(){
 
   for(var i=0; i<letters.length;i++){
     success.push("_");
-    document.getElementById("name").innerHTML = sucess;
+    document.getElementById("name").innerHTML = success;
   }
   
-  document.getElementById("name").innerHTML = sucess.join('');
+  document.getElementById("name").innerHTML = success.join('');
 
   document.getElementById("lives").innerHTML = lives;
 
