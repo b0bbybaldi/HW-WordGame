@@ -1,57 +1,93 @@
+var choices =['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+
 var artists = ["bad bunny", "daddy yankee", "don omar", "enrique iglesias", "farruko", "j balvin", "juan magan", "luis fonsi", "maluma", "nicky jam", "ozuna", "piso 21", "sebastian yatra", "wisin", "yandel"];
 
-var randomArtist = artists[(Math.floor(Math.random()*artists.length))];
+var randomArtist = "";
 
-console.log(randomArtist);
+var letters = [];
 
-var lives = 10;
-
-var spaces = [];
+var success = [];
 
 var wrongs = [];
 
-var wins = document.getElementById("score");
+var wins = 0;
 
-var tries = document.getElementById("guess");
+var lives = 10;
 
-var userText = document.getElementById("name");
+var spaces = 0;
 
-// var getSpaces = function(){
-  for(var i=0; i<randomArtist.length;i++){
-    spaces.push("_");
+var rights = 0;
+
+function reset(){
+
+  randomArtist = artists[(Math.floor(Math.random()*artists.length))];
+
+  letters = randomArtist.split('');
+
+  spaces = letters.length;
+
+  console.log(randomArtist);
+
+  lives = 10;
+
+  rights = 0;
+
+  success = [];
+
+  wrongs = [];
+
+  choices =['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+
+
+  for(var i=0; i<letters.length;i++){
+    success.push("_");
+    document.getElementById("name").innerHTML = sucess;
   }
-//   return spaces;
-// }
+  
+  document.getElementById("name").innerHTML = sucess.join('');
+
+  document.getElementById("lives").innerHTML = lives;
+
+  document.getElementById("score").innerHTML = wins;
+
+}
 
 
 document.onkeyup = function(event){
 
-  var userGuess = event.keyCode;
+  var userGuess = event.key;
 
   console.log(userGuess);
 
-  var word = String.fromCharCode(userGuess);
+  for(var i=0; i<choices.length; i++){
+    if(userGuess === choices[i]){
+      if(randomArtist.indexOf(userGuess) > -1){
+        for(var i=0; i< spaces; i++){
+          if(letters[i] === userGuess){
+            rights++;
+            success[i] = userGuess;
+            document.getElementById("name").innerHTML = success.join(" ");
+          }
+        }
+      }else{
+        wrongs.push(userGuess);
+        lives--;
+        document.getElementById("lives").innerHTML = lives;
+        document.getElementById("guess").innerHTML = wrongs;
+      }
 
-  console.log(word);
-
-  if(randomArtist.indexOf(word)>-1){
-    spaces[randomArtist.indexOf(word)] = word;
-    userText.textContent = spaces.join(" ");
-
-    if(spaces.join(" ") == randomArtist){
-      alert("You win!");
-      wins++;
-    } 
-  }else{
-      lives--
-    if(lives === 0){
-      alert(" You lost! -> Game Over :( ");
-    }else{
-      wrongs.push(word);
-      tries.textContent = wrongs;
+      if(rights === spaces){
+        wins++;
+        document.getElementById("score").innerHTML = wins;
+        alert("You Win");
+        reset();
+      }else if(lives === 0){
+        alert("You Loose");
+        reset();
+      }
     }
   }
-
 }
 
+    
    
